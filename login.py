@@ -15,3 +15,14 @@ def login(username, password):
 		else :
 			print(user_db.loc[user_db["email"] == username])
 			return "login success"
+
+def signup(username, password):
+
+	user_file = "user.csv"
+	user_db = pd.read_csv(user_file)
+
+	row = {"email" : str(username), "password" : str(password), "is_leader" : 0, "pool" : 0, "uid" : int(max(list(user_db["uid"])) + 1)}
+	user_db = user_db.append(row,ignore_index=True)
+
+	user_db.to_csv("user.csv")
+	print(user_db, "\nDone")
