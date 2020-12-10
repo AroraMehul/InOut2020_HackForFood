@@ -1,3 +1,5 @@
-id,subscription,domain,uniqueLink,startDate,duration,status,p1,p2,p3,p4,leader
-1,a,b,c,d,e,f,g,h,i,j,k
-2,Netflix,,,,,,1,2,3,4,1
+,id,subscription,domain,uniqueLink,startDate,duration,status,p1,p2,p3,p4,leader
+0,1,a,b,c,d,e,f,g,h,i,j,k
+1,2,Netflix,,,,,,1,2,3,4,1
+2,3,Amazon,,,,,,1,2,3,4,1
+3,4,Amazon,,,,,,1,2,3,4,1
