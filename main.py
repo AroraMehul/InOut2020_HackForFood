@@ -4,6 +4,7 @@ import requests
 from flask_cors import CORS
 from login import login, signup
 from pool import create_pool, join_pool
+from wallet import add_money, check_balance, deduct_money
 
 app = Flask(__name__)
 CORS(app)
@@ -41,6 +42,34 @@ def create():
 def join():
 	data= request.json
 	out = join_pool(data['uid'], data['p1'])
+	return jsonify(
+			status=out
+		)
+
+
+@app.route('/wallet/addMoney', methods=['POST'])
+def addMoney():
+	data= request.json
+	out = add_money(data['uid'], data['amt'])
+	return jsonify(
+			status=out
+		)
+
+@app.route('/wallet/checkBal', methods=['POST'])
+def checkBal():
+	data= request.json
+	out = check_balance(data['uid'])
+	status = 1
+	if(out == -2) : status = -2 
+	return jsonify(
+			status= status,
+			res = out
+		)
+
+@app.route('/wallet/deductMoney', methods=['POST'])
+def deductMoney():
+	data= request.json
+	out = deduct_money(data['uid'], data['amt'])
 	return jsonify(
 			status=out
 		)

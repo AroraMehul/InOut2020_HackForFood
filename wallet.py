@@ -20,19 +20,16 @@ def add_money(user_id, amount):
 		dbf.loc[len(dbf)] = (user_id, amount)
 
 	save_db(dbf)
-	return
+	return 1
 
 def check_balance(user_id):
 	'''
 	error codes
 	-2 : user doesn't exist
-	1 : success
 	'''
 	dbf = load_db()
 	if ( user_id in dbf['user_id'].unique() ):
-		return dbf.loc[dbf['user_id'] == user_id, 'balance'].values[0]
-		save_db(dbf)
-		return 1
+		return dbf.loc[dbf['user_id'] == user_id, 'balance'].values[0]		
 	else:
 		return -2
 	
