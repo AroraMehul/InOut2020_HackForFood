@@ -16,12 +16,13 @@ def login(username, password):
 			print(user_db.loc[user_db["email"] == username])
 			return True
 
-def signup(username, password):
+def signup(name, username, password):
 
 	user_file = "user.csv"
 	user_db = pd.read_csv(user_file)
+	row = None
 	try :
-		row = {"email" : str(username), "password" : str(password), "isLeader" : 0, "pool" : 0, "uid" : int(max(list(user_db["uid"])) + 1)}
+		row = {"email" : str(username), "password" : str(password), "isLeader" : 0, "pool" : 0, "uid" : int(max(list(user_db["uid"])) + 1), "name" : name}
 		user_db = user_db.append(row,ignore_index=True)
 
 		if("Unnamed: 0" in user_db.columns):
@@ -30,8 +31,8 @@ def signup(username, password):
 		print(user_db, "\nDone")
 	except Exception as e:
 		print(e)
-		return False
+		return False, row
 
-	return True
+	return True, row
 
-# signup("test8", "test0")
+#print(signup("name", "test8", "test0"))

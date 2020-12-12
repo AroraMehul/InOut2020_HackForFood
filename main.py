@@ -23,9 +23,10 @@ def login_():
 @app.route('/auth/signup', methods=['GET', 'POST'])
 def signup_():
 	data = request.json
-	out = signup(data['email'], data['password'])
+	out, user = signup(data['email'], data['password'])
 	return jsonify(
-			status=out
+			status=out,
+			res=user
 		)
 
 @app.route('/pool/create', methods=['GET', 'POST'])
