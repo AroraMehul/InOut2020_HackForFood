@@ -16,15 +16,17 @@ def hello_world():
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login_():
 	data = request.json
-	out = login(data['email'], data['password'])
+	out, user = login(data['email'], data['password'])
 	return jsonify(
-			status=out
+			status=out,
+			res=user
 		)
 
 @app.route('/auth/signup', methods=['GET', 'POST'])
 def signup_():
 	data = request.json
-	out, user = signup(data['email'], data['password'])
+	print(data)
+	out, user = signup(data['name'], data['email'], data['password'])
 	return jsonify(
 			status=out,
 			res=user

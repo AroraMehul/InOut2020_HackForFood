@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 
 def login(username, password):
 
@@ -6,15 +7,15 @@ def login(username, password):
 	user_db = pd.read_csv(user_file)
 
 	if username not in list(user_db["email"]):
-		return False
+		return False, None
 
 	else:
 		row = user_db.loc[user_db["email"] == username]
 		if not row["password"].tolist()[0] == password :
-			return False
+			return False, None
 		else :
 			print(user_db.loc[user_db["email"] == username])
-			return True
+			return True, row.to_json()
 
 def signup(name, username, password):
 
