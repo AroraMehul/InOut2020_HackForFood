@@ -11,8 +11,11 @@ import {
     loading: false
   };
   export default function(state = initialState, action) {
+    console.log("AA RAHA HU MAI")
     switch (action.type) {
       case SET_CURRENT_USER:
+        console.log("SETTING USER")
+        console.log(action)
         return {
           ...state,
           isAuthenticated: !isEmpty(action.payload),
