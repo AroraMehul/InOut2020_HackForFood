@@ -5,6 +5,7 @@ from flask_cors import CORS
 from login import login, signup
 from pool import create_pool, join_pool
 from wallet import add_money, check_balance, deduct_money
+from cookiemanager import create_cookie, fetch_cookie
 
 app = Flask(__name__)
 CORS(app)
@@ -74,6 +75,27 @@ def deductMoney():
 	out = deduct_money(data['uid'], data['amt'])
 	return jsonify(
 			status=out
+		)
+
+@app.route('/cook/create_cookie', methods=['POST'])
+def createCookie():
+	data= request.json
+	out = deduct_money(data['uid'], data['besan'])
+	return jsonify(
+			status=out
+		)
+
+@app.route('/cook/fetch_cookie', methods=['POST'])
+def fetchCookie():
+	data = request.json
+	out = deduct_money(data['uid'])
+	status = 1
+	if(out == -2) : 
+		status = -2
+		out  = ""
+	return jsonify(
+			status=status,
+			res = json.loads(out)
 		)
 
 if __name__ == '__main__':
