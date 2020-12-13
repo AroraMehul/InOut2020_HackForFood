@@ -21,10 +21,11 @@ export const loginUser = userData => dispatch => {
       // Save to localStorage
       // Set token to localStorage
       var status = res.data.status
+      console.log(status);
       if (status == true) {
+        console.log(res.data)
         localStorage.setItem("user", res.data.res)
         dispatch(setCurrentUser(res.data.res));
-        console.log("Auth Success")
 
       }
     })
