@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import numpy as np
 
 def login(username, password):
 
@@ -14,8 +15,9 @@ def login(username, password):
 		if not row["password"].tolist()[0] == password :
 			return False, None
 		else :
-			print(user_db.loc[user_db["email"] == username])
-			return True, row.to_json()
+			#print(user_db.loc[user_db["email"] == username])
+			user = {"email" : row['email'][0], "password" : row['password'][0], "isLeader" : row["isLeader"][0], "pool" : row['pool'][0], "uid" : row['uid'][0], "name" : row['name'][0]}
+			return True, user
 
 def signup(name, username, password):
 
@@ -36,4 +38,4 @@ def signup(name, username, password):
 
 	return True, row
 
-#print(signup("name", "test8", "test0"))
+print(login("test", "test"))
