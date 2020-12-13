@@ -16,7 +16,7 @@ def login(username, password):
 			return False, None
 		else :
 			#print(user_db.loc[user_db["email"] == username])
-			user = {"email" : row['email'][0], "password" : row['password'][0], "isLeader" : row["isLeader"][0], "pool" : row['pool'][0], "uid" : row['uid'][0], "name" : row['name'][0]}
+			user = {"email" : list(row['email'])[0], "password" : list(row['password'])[0], "isLeader" : list(row["isLeader"])[0], "pool" : list(row['pool'])[0], "uid" : list(row['uid'])[0], "name" : list(row['name'])[0]}
 			return True, user
 
 def signup(name, username, password):
